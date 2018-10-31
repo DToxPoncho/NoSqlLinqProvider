@@ -4,20 +4,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NoSqlLinqProviderTest
+namespace NoSqlLinqProvider
 {
     class TerraServiceSoapClient
     {
-        internal Place[] GetPlaceList(string location, int numResults, bool mustHaveImage, bool getEqualOnly)
+        internal Place[] GetPlaceList(string location, int numResults, bool mustHaveImage)
         {
             Place[] places = new Place[] {
                 new Place("Sacramento", "CA", PlaceType.CityTown)
                 , new Place("Elk Grove", "CA", PlaceType.CityTown)
                 , new Place("South Bend", "IN", PlaceType.CityTown)
             };
-            if (getEqualOnly == true)
-                return places.Where(x => x.Name == location || x.State == location).ToArray();
-            return places.Where(x => x.Name.StartsWith(location) || x.State.StartsWith(location)).ToArray();
+            return places.Where(x => x.Name == location || x.State == location).ToArray();
         }
 
         internal void Close()
